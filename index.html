@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue.js</title>
+  </script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ message }}</p>
+      <button v-on:click="sayHello">Click me!</button>
+      <input v-model="goodbyeText">
+      {{ goodbyeText }}
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+  </html>
+
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      message: "こんにちは！",
+      goodbyeText: ""
+    },
+    methods: {
+      sayHello() {
+        alert("Hello!!!!")
+      }
+    }
+  })
+</script>
