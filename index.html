@@ -17,7 +17,7 @@
         </div>
         <section class="tasks">
           <ul>
-            <template v-for="(task, index) in tasks">
+          <template v-for="(task, index) in tasks">
               <li
                 :key="task"
                 :id="index"
@@ -65,7 +65,7 @@
     },
     methods: {
       addTask() {
-        if (newTask.length) { return }
+        if (!newTask.length) { return }
 
         this.tasks.push({ title: this.newTask, isComplete: false })
         this.saveToLocalStorage()
