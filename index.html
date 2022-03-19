@@ -66,6 +66,7 @@
       addTask() {
         this.tasks.push({ title: this.newTask, isComplete: false })
         this.saveToLocalStorage()
+        this.newTask = ""
       },
       deleteTask(index) {
         this.tasks.forEach((tasks, loopIndex) => {
