@@ -3,16 +3,42 @@
   <head>
     <meta charset="utf-8">
     <title>Vue.js</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   </script>
   </head>
   <body>
-    <div id="app">
-      <p>{{ message }}</p>
-      <button v-on:click="sayHello">Click me!</button>
-      <input v-model="goodbyeText">
-      {{ goodbyeText }}
+    <div id="app" class="container">
+      <div class="wrapper">
+        <p class="title">{{ title }}</p>
+        <div class="add-task">
+          <input v-model="newTask">
+          <button v-on:click="addTask">追加する</button>
+        </div>
+        <div class="tasks">
+          <ul>
+            <template v-for="(task, index) in tasks">
+              <li
+                :key="task"
+                :id="index"
+                :class="{ complete: task.isComplete }"
+                @click="completeTask(index)"
+              >
+                {{ task.title }}
+                <button
+                  @click="deleteTask(index)"
+                  class="trash-icon"
+                  >
+                  <i class="fas fa-trash"></i>
+              </button>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </div>
     </div>
   </body>
+
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
   </html>
 
@@ -20,13 +46,53 @@
   new Vue({
     el: "#app",
     data: {
-      message: "こんにちは！",
-      goodbyeText: ""
+      title: "My First Todo App",
+      newTask: "",
+      tasks: [
+        // {
+        //   title: "TOEIC 2000点とる",
+        //   isComplete: false
+        // },
+        // {
+        //   title: "スカイダイビングをする",
+        //   isComplete: true
+        // }
+      ]
+    },
+    mounted() {
+      this.getLocalStorageData()
     },
     methods: {
-      sayHello() {
-        alert("Hello!!!!")
+      addTask() {
+        this.tasks.push({ title: this.newTask, isComplete: false })
+        this.saveToLocalStorage()
+      },
+      deleteTask(index) {
+        this.tasks.forEach((tasks, loopIndex) => {
+          if (index === loopIndex) {
+            this.tasks.splice(index, 1);
+          }
+        })
+      },
+      completeTask(index) {
+        this.tasks.forEach((task, loopIndex) => {
+          if (index === loopIndex) {
+            task.isComplete = !task.isComplete;
+          }
+        })
+        this.saveToLocalStorage()
+      },
+      getLocalStorageData () {
+        const data = localStorage.getItem('todo');
+
+        if (data) {
+          this.tasks = JSON.parse(data);
+        }
+      },
+      saveToLocalStorage () {
+        localStorage.setItem('todo', JSON.stringify(this.tasks));
       }
-    }
+    },
   })
 </script>
+
