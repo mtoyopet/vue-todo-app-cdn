@@ -16,7 +16,7 @@ body {
 }
 
 .container .wrapper {
-  margin: 80px auto;
+  margin: 80px 80px;
 }
 
 .title {
@@ -25,14 +25,17 @@ body {
   color: #16080d;
 }
 
+.add-task {
+  margin: 30px 0;
+}
+
 .add-task input {
-  width: 70%;
+  width: 80%;
   padding: 12px 20px;
-  margin: 8px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  display: inline-block;
+  display: inline;
 }
 
 .add-task input:focus {
@@ -55,7 +58,7 @@ body {
 }
 
 .tasks ul {
-  width: 85%;
+  width: 100%;
   max-height: 250px;
   overflow-y: auto;
   display: inline-block;
@@ -119,3 +122,6 @@ body {
   border: none;
 }
 
+[v-cloak] {
+  display: none;
+}

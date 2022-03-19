@@ -8,14 +8,14 @@
   </script>
   </head>
   <body>
-    <div id="app" class="container">
+    <div id="app" class="container" v-cloak>
       <div class="wrapper">
         <p class="title">{{ title }}</p>
         <div class="add-task">
           <input v-model="newTask">
           <button v-on:click="addTask">追加する</button>
         </div>
-        <div class="tasks">
+        <section class="tasks">
           <ul>
             <template v-for="(task, index) in tasks">
               <li
@@ -34,7 +34,7 @@
               </li>
             </template>
           </ul>
-        </div>
+        </section>
       </div>
     </div>
   </body>
@@ -48,16 +48,7 @@
     data: {
       title: "My First Todo App",
       newTask: "",
-      tasks: [
-        // {
-        //   title: "TOEIC 2000点とる",
-        //   isComplete: false
-        // },
-        // {
-        //   title: "スカイダイビングをする",
-        //   isComplete: true
-        // }
-      ]
+      tasks: []
     },
     mounted() {
       this.getLocalStorageData()
