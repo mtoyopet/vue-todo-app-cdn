@@ -35,6 +35,9 @@
             </template>
           </ul>
         </section>
+        <section class="remainingTasks">
+          残り{{ remaining.length }}個のタスクが残っています
+        </section>
       </div>
     </div>
   </body>
@@ -49,6 +52,13 @@
       title: "My First Todo App",
       newTask: "",
       tasks: []
+    },
+    computed: {
+      remaining() {
+        return this.tasks.filter((task) => {
+          return !task.isComplete
+        })
+      }
     },
     mounted() {
       this.getLocalStorageData()
