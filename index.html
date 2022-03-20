@@ -65,7 +65,7 @@
     },
     methods: {
       addTask() {
-        if (!newTask.length) { return }
+        if (!this.newTask.length) { return }
 
         this.tasks.push({ title: this.newTask, isComplete: false })
         this.saveToLocalStorage()
